@@ -1,11 +1,13 @@
 package trb;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 
 public class Star {
+    private static final int STAR_SPOKES = 6;
     private int id;
-    private double x;
-    private double y;
+    private int x;
+    private int y;
     private double size;
     private Color color;
     private int[] connections;
@@ -22,6 +24,15 @@ public class Star {
         return output;
     }
 
+    public void drawOn(Graphics2D g2) {
+        g2.setColor(color);
+        for(int i=0; i < STAR_SPOKES; i++) {
+            int endX = x + (int)(size*Math.cos((2 * Math.PI/STAR_SPOKES) * i));
+            int endY = y + (int)(size*Math.sin((2 * Math.PI/STAR_SPOKES) * i));
+            g2.drawLine(x, y, endX, endY);
+        }
+    }
+
     public int getId() {
         return id;
     }
@@ -31,13 +42,13 @@ public class Star {
     public double getX() {
         return x;
     }
-    public void setX(double x) {
+    public void setX(int x) {
         this.x = x;
     }
     public double getY() {
         return y;
     }
-    public void setY(double y) {
+    public void setY(int y) {
         this.y = y;
     }
     public double getSize() {

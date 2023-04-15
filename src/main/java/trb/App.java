@@ -5,10 +5,16 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileInputStream;
+import javax.swing.JFrame;
+import java.awt.Color;
 
 public class App 
 {
     public static void main( String[] args ) {
+        JFrame frame;
+        final int FRAME_WIDTH = 1024;
+        final int FRAME_HEIGHT = 1024;
+
         /*
         The goal of this part of the program is to:
         1. Create a Constellation object
@@ -32,8 +38,13 @@ public class App
         catch (Exception e) {
             System.out.println("StreamReadException: " + e.getMessage());
         }
-        for(Star star : constellation.getStars()) {
-            System.out.println(star);
-        }
+
+        // Create the frame
+        frame = new JFrame("Constellation");
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
+        frame.getContentPane().setBackground(Color.BLACK);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+        frame.add(constellation);
     }
 }
